@@ -2,6 +2,7 @@ import React from 'react'
 import Pixel from './Pixel'
 import ColorPicker from './ColorPicker'
 import colors from '../DrawingVariables'
+import { base } from '../base'
 
 class DrawingPanel extends React.Component {
   panelPixelSize = 25 // size of each panel pixel in real pixels
@@ -11,8 +12,9 @@ class DrawingPanel extends React.Component {
     super()
     this.state = {
       activeColor: colors[4],
-      pixels: Array(this.panelSize).fill(Array(this.panelSize).fill(colors[1])) // 2D array with colors
+      pixels: Array(this.panelSize).fill(Array(this.panelSize).fill(colors[0])) // 2D array with colors
     }
+    console.log(JSON.stringify(this.state.pixels))
   }
 
   handleClick = (i, j) => {
@@ -55,6 +57,17 @@ class DrawingPanel extends React.Component {
         </tbody>
       </table>
     )
+  }
+
+  componentWillMount = () => {
+    this.ref = base.syncState('pixels/', {
+      context: this,
+      state: 'pixels'
+    })
+  }
+
+  componentWillUnmount = () => {
+    base.removeBinding(this.ref)
   }
 
   render() {
