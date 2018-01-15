@@ -5,8 +5,8 @@ import colors from '../DrawingVariables'
 import { base } from '../base'
 
 class DrawingPanel extends React.Component {
-  panelPixelSize = 25 // size of each panel pixel in real pixels
-  panelSize = 10 // size of drawing panel
+  panelPixelSize = 10 // size of each panel pixel in real pixels
+  panelSize = 50 // size of drawing panel
 
   constructor() {
     super()
@@ -14,7 +14,6 @@ class DrawingPanel extends React.Component {
       activeColor: colors[4],
       pixels: Array(this.panelSize).fill(Array(this.panelSize).fill(colors[0])) // 2D array with colors
     }
-    console.log(JSON.stringify(this.state.pixels))
   }
 
   handleClick = (i, j) => {

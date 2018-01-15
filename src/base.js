@@ -1,6 +1,8 @@
 import Rebase from 're-base'
 import firebase from 'firebase'
 
+console.log(process.env)
+
 const config = {
   apiKey: "AIzaSyBnnzgcnvyLG6wMyenvQtjrFhmkmMgSog4",
   authDomain: "crowd-drawing-react.firebaseapp.com",
