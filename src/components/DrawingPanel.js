@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Pixel from './Pixel'
+import ColorPicker from './ColorPicker'
 import colors from '../DrawingVariables'
 
-class DrawingPanel extends Component {
+class DrawingPanel extends React.Component {
   panelPixelSize = 25 // size of each panel pixel in real pixels
   panelSize = 10 // size of drawing panel
 
   constructor() {
     super()
     this.state = {
-      pixels: Array(this.panelSize).fill(Array(this.panelSize).fill(colors[2])) // 2D array with colors
+      activeColor: colors[4],
+      pixels: Array(this.panelSize).fill(Array(this.panelSize).fill(colors[1])) // 2D array with colors
     }
   }
 
   handleClick = (i, j) => {
     const pixels = JSON.parse(JSON.stringify(this.state.pixels))
-    pixels[i][j] = colors[1]
+    pixels[i][j] = this.state.activeColor
     this.setState({ pixels })
+  }
+
+  updateColor = (color) => {
+    let newColor = this.state.activeColor
+    newColor = color
+    this.setState({ activeColor: newColor })
   }
 
   createPixel = (i, j) => {
@@ -50,9 +58,13 @@ class DrawingPanel extends Component {
   }
 
   render() {
-    this.prepareDrawing()
     return (
       <div className="panelContainer">
+        <ColorPicker 
+          colorOptions={colors}
+          updateColor={this.updateColor}
+        />
+        <br /><br />
         {this.prepareDrawing()}
       </div>
     )

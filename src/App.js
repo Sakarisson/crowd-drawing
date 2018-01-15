@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-// import logo from './logo.svg'
+import React from 'react'
 import './App.css'
 import DrawingPanel from './components/DrawingPanel'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div>
